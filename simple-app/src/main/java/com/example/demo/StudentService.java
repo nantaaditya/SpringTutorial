@@ -26,4 +26,26 @@ public class StudentService {
         .findFirst()
         .orElseGet(() -> null);
   }
+  
+  public Student updateStudent(String studentID, Student updateStudent){
+	 for (Student student : students) {
+		if(student.getId().equals(studentID)) {
+			updateStudent.setId(studentID);
+			students.set(students.indexOf(student), updateStudent);
+			return updateStudent;
+		}
+	}
+	 return null;
+  }
+  
+  public Student deleteStudent(String studentID) {
+      for (Student student : students) {
+		if(student.getId().equals(studentID)) {
+			students.remove(student);
+			return student;
+		}
+	}
+      return null;
+  }
+  
 }
