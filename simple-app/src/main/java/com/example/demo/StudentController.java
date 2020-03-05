@@ -47,20 +47,5 @@ public class StudentController {
   public Student getById(@PathVariable String id) {
     return studentService.getById(id);
   }
-  
-  @PutMapping(
-	      value = "/students/update/{id}",
-	      produces = MediaType.APPLICATION_JSON_VALUE
-	  )
-  public Student updateStudent(@PathVariable String id, @RequestBody Student updateStudent) {
-	return studentService.updateStudent(id, updateStudent);
-  }
-  
-  @DeleteMapping(
-		  value = "/students/delete/{id}"
-		 )
-  public Student deleteStudent(@PathVariable String id) {
-	  return studentService.deleteStudent(id);
-  }
-  
+
 }
