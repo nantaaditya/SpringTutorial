@@ -50,16 +50,14 @@ public class StudentController {
   
   @PutMapping(
 	      value = "/students/update/{id}",
-	      produces = MediaType.APPLICATION_JSON_VALUE,
-	      consumes = MediaType.APPLICATION_JSON_VALUE
+	      produces = MediaType.APPLICATION_JSON_VALUE
 	  )
   public Student updateStudent(@PathVariable String id, @RequestBody Student updateStudent) {
 	return studentService.updateStudent(id, updateStudent);
   }
   
   @DeleteMapping(
-		  value = "/students/delete/{id}",
-		  produces = MediaType.APPLICATION_JSON_VALUE
+		  value = "/students/delete/{id}"
 		 )
   public Student deleteStudent(@PathVariable String id) {
 	  return studentService.deleteStudent(id);
