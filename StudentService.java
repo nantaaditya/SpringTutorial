@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,42 +11,34 @@ import java.util.List;
  **/
 @Service
 public class StudentService {
-  private List<Student> students = new ArrayList<>();
-  
-  public void add(Student student) {
-    students.add(student);
-  }
+	@Autowired
+	  private StudentRepository studentRepository;
+	  
+	  public void add(Student student) {
+	    studentRepository.save(student);
+	  }
 
-  public List<Student> get() {
-    return students;
-  }
+	  public List<Student> get() {
+	    return studentRepository.findAll();
+	  }
 
-  public Student getById(String id) {
-    return students.stream()
-        .filter(student -> id.equals(student.getId()))
-        .findFirst()
-        .orElseGet(() -> null);
-  }
-  
-  public Student updateStudent(String studentID, Student updateStudent){
-	 for (Student student : students) {
-		if(student.getId().equals(studentID)) {
-			updateStudent.setId(studentID);
-			students.set(students.indexOf(student), updateStudent);
-			return updateStudent;
-		}
-	}
-	 return null;
-  }
-  
-  public Student deleteStudent(String studentID) {
-      for (Student student : students) {
-		if(student.getId().equals(studentID)) {
-			students.remove(student);
-			return student;
-		}
-	}
-      return null;
-  }
-  
+	  public Student getById(String id) {
+	    return studentRepository.findById(id);
+	  }
+	  
+	  public Student updateStudent(String id, Student studentUpdate) {
+		  Student student = studentRepository.findById(id);
+		  if(student == null) {
+			  return null;
+		  }
+		  student.setId(id);
+		  student.setAge(studentUpdate.getAge());
+		  student.setName(studentUpdate.getName());
+		  
+		  return studentRepository.save(student);
+	  }
+	  
+	  public void deleteStudent(String id) {
+		  studentRepository.deleteById(id);
+	  }
 }

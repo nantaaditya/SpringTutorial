@@ -18,51 +18,50 @@ import java.util.List;
  **/
 @RestController
 public class StudentController {
+	  @Autowired
+	  private StudentService studentService;
   
-  @Autowired
-  private StudentService studentService;
-  
-  @PostMapping(
-      value = "/students",
-      consumes = MediaType.APPLICATION_JSON_VALUE,
-      produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public Student add(@RequestBody Student student) {
-    studentService.add(student);
-    return student;
-  }
-  
-  @GetMapping(
-      value = "/students",
-      produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public List<Student> findAll() {
-    return studentService.get();
-  }
+	 @PostMapping(
+		      value = "/students",
+		      consumes = MediaType.APPLICATION_JSON_VALUE,
+		      produces = MediaType.APPLICATION_JSON_VALUE
+		  )
+		  public Student add(@RequestBody Student student) {
+		    studentService.add(student);
+		    return student;
+		  }
+		  
+		  @GetMapping(
+		      value = "/students",
+		      produces = MediaType.APPLICATION_JSON_VALUE
+		  )
+		  public List<Student> findAll() {
+		    return studentService.get();
+		  }
 
-  @GetMapping(
-      value = "/students/{id}",
-      produces = MediaType.APPLICATION_JSON_VALUE
-  )
-  public Student getById(@PathVariable String id) {
-    return studentService.getById(id);
-  }
-  
-  @PutMapping(
-	      value = "/students/update/{id}",
-	      produces = MediaType.APPLICATION_JSON_VALUE,
-	      consumes = MediaType.APPLICATION_JSON_VALUE
-	  )
-  public Student updateStudent(@PathVariable String id, @RequestBody Student updateStudent) {
-	return studentService.updateStudent(id, updateStudent);
-  }
-  
-  @DeleteMapping(
-		  value = "/students/delete/{id}",
-		  produces = MediaType.APPLICATION_JSON_VALUE
-		 )
-  public Student deleteStudent(@PathVariable String id) {
-	  return studentService.deleteStudent(id);
-  }
+		  @GetMapping(
+		      value = "/students/{id}",
+		      produces = MediaType.APPLICATION_JSON_VALUE
+		  )
+		  public Student getById(@PathVariable String id) {
+		    return studentService.getById(id);
+		  }
+		  
+		  @PutMapping(
+				  value = "/students/update/{id}",
+				  produces = MediaType.APPLICATION_JSON_VALUE
+				  )
+		  public Student updateStudent(@PathVariable String id, @RequestBody Student updateStudent) {
+			  return studentService.updateStudent(id, updateStudent);
+		  }
+		  
+		  @DeleteMapping(
+				  value = "/students/delete/{id}",
+				  produces = MediaType.APPLICATION_JSON_VALUE
+				  )
+		  public void deleteStudent(@PathVariable String id) {
+			  studentService.deleteStudent(id);
+		  }
+
   
 }
