@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 /**
@@ -39,11 +40,11 @@ public class StudentController {
   public Student getById(@PathVariable String id) {
     return studentService.getById(id);
   }
-  @PutMapping(value ="/students/{id}")
+  @PutMapping(value ="/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public Student update(@RequestBody Student updateStudent, @PathVariable("id") String id){
      return studentService.update(updateStudent, id);
   }
-  @DeleteMapping(value = "/students/{id}")
+  @DeleteMapping(value = "/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public  void delete(@PathVariable("id") String id){
       studentService.delete(id);
   }
