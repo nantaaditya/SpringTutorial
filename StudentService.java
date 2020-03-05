@@ -17,14 +17,9 @@ public class StudentService {
   public void add(Student student){studentRepository.save(student);}
   public List<Student> get(){return studentRepository.findAll();}
   public Student getById (String id){return studentRepository.findById(id);}
-  public Student update(Student student, String id){
-    int idx=0;
-    for (Student student1:student) {
-        if(id.equals(student.getId())){
-          
-        }
-
-    }
+  public Student update(Student student){
+    studentRepository.save(student);
+    return student;
   }
 
 //  private List<Student> students = new ArrayList<>();

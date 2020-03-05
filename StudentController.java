@@ -42,9 +42,9 @@ public class StudentController {
   }
 
   @PutMapping(value = "/students/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Student update(@RequestBody Student student){
-      studentService.update(student);
-      return student;
+  public Student update(@RequestBody Student updateStudent){
+      studentService.update(updateStudent);
+      return updateStudent;
   }
 //  @PutMapping(value ="/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //  public Student update(@RequestBody Student updateStudent, @PathVariable("id") String id){
