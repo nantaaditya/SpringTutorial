@@ -40,13 +40,19 @@ public class StudentController {
   public Student getById(@PathVariable String id) {
     return studentService.getById(id);
   }
-  @PutMapping(value ="/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Student update(@RequestBody Student updateStudent, @PathVariable("id") String id){
-     return studentService.update(updateStudent, id);
+
+  @PutMapping(value = "/students/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public Student update(@RequestBody Student student){
+      studentService.update(student);
+      return student;
   }
-  @DeleteMapping(value = "/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public  void delete(@PathVariable("id") String id){
-      studentService.delete(id);
-  }
+//  @PutMapping(value ="/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//  public Student update(@RequestBody Student updateStudent, @PathVariable("id") String id){
+//     return studentService.update(updateStudent, id);
+//  }
+//  @DeleteMapping(value = "/students/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//  public  void delete(@PathVariable("id") String id){
+//      studentService.delete(id);
+//  }
 
 }
