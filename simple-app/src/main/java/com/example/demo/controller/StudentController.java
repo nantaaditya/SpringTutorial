@@ -1,16 +1,18 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.entity.Student;
+import com.example.demo.helper.ConverterHelper;
+import com.example.demo.model.StudentWebRequest;
+import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -27,9 +29,8 @@ public class StudentController {
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public Student add(@RequestBody Student student) {
-    studentService.add(student);
-    return student;
+  public Student add(@RequestBody @Valid StudentWebRequest studentWebRequest) {
+    return studentService.add(ConverterHelper.copy(studentWebRequest, new Student()));
   }
   
   @GetMapping(

@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.repository.StudentRepository;
+import com.example.demo.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class StudentService {
   @Autowired
   private StudentRepository studentRepository;
   
-  public void add(Student student) {
-    studentRepository.save(student);
+  public Student add(Student student) {
+    return studentRepository.save(student);
   }
 
   public List<Student> get() {
