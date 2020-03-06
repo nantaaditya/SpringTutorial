@@ -18,7 +18,7 @@ public class StudentWebUpdateRequest {
     @NotBlank(message = "NotBlank")
     @IdMustExist(message = "NotExist")
     private String id;
-    @Size(min = 5, max = 20)
+    @Size(min = 4, max = 20)
     @NotBlank(message = "NotBlank")
     private String name;
     @Min(value = 1, message = "MustGreaterThanOne")
