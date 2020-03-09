@@ -24,6 +24,6 @@ public class IdMustNotExistValidator implements ConstraintValidator<IdMustNotExi
 
   @Override
   public boolean isValid(String value, ConstraintValidatorContext context) {
-    return StringUtils.isEmpty(value) || !studentRepository.exists(value);
+    return !studentRepository.exists(value);
   }
 }

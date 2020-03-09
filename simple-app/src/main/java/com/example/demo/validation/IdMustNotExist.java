@@ -7,12 +7,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.CLASS;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * created by pramuditya.anantanur
  **/
-@Target(FIELD)
+@Target(value = {FIELD, METHOD})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {IdMustNotExistValidator.class})
 @Documented
